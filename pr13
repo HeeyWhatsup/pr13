@@ -1,0 +1,208 @@
+public class Main
+{
+  public static void main(String[] ar)
+  {
+    ArrayQueueModule array_1 = new ArrayQueueModule();
+    LinkedQueue list_1 = new LinkedQueue();
+    for (int i = 25; i < 36; i++)
+    {
+      array_1.enqueue(i);
+      list_1.enqueue(i);
+    }
+    System.out.println(array_1);
+    System.out.println(list_1);
+    System.out.println("Размер связного списка: " + list_1.size());
+    System.out.println("Первый удаленный элемент связного списка: " + list_1.dequeue());
+    System.out.println("Новый размер связного списка: " + list_1.size());
+    ArrayQueueADT array_2 = new ArrayQueueADT();
+    array_2.enqueue(array_1.GetArray(), 40);
+    System.out.println("Очередь ArrayQueueModule, измененная через ArrayQueueADT:\n" + array_2.GetArray(array_1.GetArray()));
+    ArrayQueue array_3 = new ArrayQueue (array_1.GetArray());
+    System.out.println("Первый элемент: " + array_3.element());
+    array_3.enqueue(12);
+    System.out.println(array_3);
+    System.out.println("Удаление элементов!");
+    array_3.clear();
+    System.out.println(array_3);
+    if (array_3.isEmpty())
+    {
+      System.out.println("Список пуст!");
+    }
+  }
+}
+
+import java.util.LinkedList;
+public class AbstractQueue
+{
+  private LinkedList<Integer> list;
+  AbstractQueue()
+  {
+    list = new LinkedList<Integer>();
+  }
+  public boolean enqueue(int element)
+  {
+    return list.add(element);
+  }
+  public int size()
+  {
+    return list.size();
+  }
+  public boolean isEmpty()
+  {
+    return list.isEmpty();
+  }
+  public void clear()
+  {
+    list.clear();
+  }
+}
+
+import java.util.ArrayList;
+public class ArrayQueue
+{
+  private ArrayList<Integer> array;
+  ArrayQueue(ArrayList<Integer> array)
+  {
+    this.array = array;
+  }
+  public boolean enqueue (int element) // Добавить элемент
+  {
+    return array.add(element);
+  }
+  public Integer element() // Вернуть первый элемент
+  {
+    return array.get(0);
+  }
+  public Integer dequeue ()
+  // Удалить и вернуть первый элемент
+  {
+    int el_0 = array.get(0);
+    array.remove(0);
+    return el_0;
+  }
+  public int size() // Размер списка
+  {
+    return array.size();
+  }
+  public boolean isEmpty() // Проверка на пустоту
+  {
+    return array.isEmpty();
+  }
+  public void clear() // Удаление всех элементов списка
+  {
+    array.clear();
+  }
+  public String toString()
+  {
+    return "ArrayQueue: " + array;
+  }
+  public ArrayList <Integer> GetArray() // Вывод списка
+  {
+    return array;
+  }
+}
+
+import java.util.ArrayList;
+public class ArrayQueueADT
+{
+  public boolean enqueue(ArrayList<Integer> array, int element) // Добавить элемент
+  {
+    return array.add(element);
+  }
+  public Integer element(ArrayList<Integer> array) // Вернуть первый элемент
+  {
+    return array.get(0);
+  }
+  public Integer dequeue (ArrayList<Integer> array)
+  // Удалить и вернуть первый элемент
+  {
+    int el_0 = array.get(0);
+    array.remove(0);
+    return el_0;
+  }
+  public int size(ArrayList<Integer> array) // Размер списка
+  {
+    return array.size();
+  }
+  public boolean isEmpty(ArrayList<Integer> array) // Проверка на пустоту
+  {
+    return array.isEmpty();
+  }
+  public void clear(ArrayList<Integer> array) // Удаление всех элементов списка
+  {
+    array.clear();
+  }
+  public ArrayList <Integer> GetArray(ArrayList<Integer> array) // Вывод списка
+  {
+    return array;
+  }
+}
+
+import java.util.ArrayList;
+public class ArrayQueueModule
+{
+  private ArrayList<Integer> array = new ArrayList<Integer>();
+  public ArrayQueueModule(){}
+  public void enqueue(int element) // Добавить элемент
+  {
+    array.add(element);
+  }
+  public String toString()
+  {
+    return "ArrayQueueModule: " + array;
+  }
+  public ArrayList <Integer> GetArray() // Вывод списка
+  {
+    return array;
+  }
+}
+
+import java.util.LinkedList;
+public class LinkedQueue
+{
+  private LinkedList <Integer> list = new LinkedList<Integer>();
+  public LinkedQueue(){}
+  public boolean enqueue(int element) // Добавить элемент
+  {
+    return list.add(element);
+  }
+  public int element() // Вернуть первый элемент
+  {
+    return list.peek();
+  }
+  public int dequeue()
+  // Удалить и вернуть первый элемент
+  {
+    return list.poll();
+  }
+  public int size() // Размер списка
+  {
+    return list.size();
+  }
+  public boolean isEmpty() // Проверка на пустоту
+  {
+    return list.isEmpty();
+  }
+  public void clear() // Удаление всех элементов списка
+  {
+    list.clear();
+  }
+  public String toString()
+  {
+    return "LinkedQueue: " + list;
+  }
+  public LinkedList <Integer> GetList() // Вывод списка
+  {
+    return list;
+  }
+}
+
+public interface Queue
+{
+  boolean enqueue(int element);
+  int element();
+  int dequeue();
+  int size();
+  boolean isEmpty();
+  void clear();
+}
